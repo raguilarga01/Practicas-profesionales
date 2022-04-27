@@ -1,30 +1,125 @@
 <!DOCTYPE html>
 <html lang="es">  
 <head>    
-    <title>Título de la WEB</title>    
-    <meta charset="UTF-8">
-    <meta name="title" content="Título de la WEB">
-    <meta name="description" content="Descripción de la WEB">    
-    <link href="estilos.css" rel="stylesheet">    
+  	<style>
+      header{
+       right: 0; text-align: center;
+      }
+  		#logo1_1{
+      	width:200px;
+      	}
+      #left {
+    	float:left;
+      	width: 30%;
+    	}
+   		#right {
+      float:left;
+      width: 30%;
+      
+    }
+    #center {
+      float:left;
+      width: 40%;
+    }
+    aside, section {
+      margin:auto;
+      padding: 2px;
+      background-color: #ccc;
+    }
+  	.clear { clear: both; }
+	#titulo{
+      font-size:15px;
+      font-weight: bold;
+      text-align: center;
+      color:rgb(153,0,51);
+      }
+      #left1{
+      float:left;
+      width: 35%;
+      padding: 30px 50px;
+      }
+     #right1{
+      float:left;
+      width: 65%;
+      
+      }
+      .columeft{
+      	text-align: center;
+      	width:200px;
+      }
+      tr{
+      text-align: center;
+      }
+      td{
+      text-align: center;
+      color:rgb(153,0,51);
+      }
+      th{
+       background:rgb(153,0,51);
+      color:rgb(196,189,151);
+      font-weight: bold;
+      }
+      #subtitulo{
+      font-size:15px;
+      font-weight: bold;
+      text-align: center;
+      color:rgb(153,0,51);
+      margin:20px 0 15px 0 ;
+      }
+  	</style>
 </head>  
 <body>    
     <header>
-        <h1>Título de la WEB</h1>      
+      <section id="left">
+         <img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/ISSSTE_logo.png" alt="" id="logo1_1"   />
+      </section>
+      <aside id="center">
+        <h1  id="titulo">Dirección Normativa de Administración y Finanzas Subdirección de Coordinación de Proyectos Jefatura de Servicios de Cómputo </h1>
+      </aside>
+       <aside id="right">
+         <img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/ISSSTE_logo.png" alt="" id="logo1_1"   />
+      </aside>
+      <div class="clear"></div>
     </header>    
-    <nav>
-        <a href="#">IR SECCIÓN 2</a>
-        <a href="#">IR SECCIÓN 3</a>
-    </nav>
-    <section>      
-        <article>
-            <h2>CONTENIDO PRINCIPAL</h2>
-            <p>Este es el contenido principal de mi web.</p>      
-        </article>      
+    <section id="left1">      
+           <div>
+             <table class="default">
+  				<tr>
+    				<th class="columeft">Delegacion</th>
+  				</tr>
+ 				<tr>
+    				<td>Hidalgo</td>
+ 				</tr>
+			</table>
+              <table class="default">
+  				<tr>
+    				<th class="columeft">Unidad Médica</th>
+  				</tr>
+ 				<tr>
+    				<td>CMF.  MIXQUIAHUALA</td>
+ 				</tr>
+			</table>
+      </div>
     </section>
-    <aside>
-        <h3>Testimonios</h3>
-        <p>Me gusta mucho esta página.</p>
+    <aside id="right1">
+      <div id="subtitulo">
+        CARGA INICIAL DE LA INFRAESTRUCTURA DE LA UNIDAD MÉDICA	
+      </div>
+      <table class="default">
+  				<tr>
+    				<th >Claves</th>
+                	<th >U.R.</th>
+                	<td>13</td>
+                	<th >C.T.</th>
+                	<td>208</td>
+                	<th >AUX</th>
+                	<td>00</td>
+  				</tr>
+ 				
+			</table>
     </aside>
+  
+  <div class="clear"></div>
     <footer>
         <h4>Redes sociales</h4>
         <a href="#">Facebook</a>
