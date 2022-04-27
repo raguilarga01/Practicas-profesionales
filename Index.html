@@ -24,7 +24,7 @@
     aside, section {
       margin:auto;
       padding: 2px;
-      background-color: #ccc;
+      
     }
   	.clear { clear: both; }
 	#titulo{
@@ -47,6 +47,19 @@
       	text-align: center;
       	width:200px;
       }
+      .columright{ 
+      	text-align: center;
+      	padding: 0px 25px;
+       border: 1px solid #000;
+      }
+      .columrightF{
+       text-align: center;
+      	width:200px;
+      	text-align: center;
+      	padding: 0px 25px;
+       border: 1px solid #000;
+      font-size:13px;
+      }
       tr{
       text-align: center;
       }
@@ -65,6 +78,15 @@
       text-align: center;
       color:rgb(153,0,51);
       margin:20px 0 15px 0 ;
+      }
+      #fecha{
+      padding: 32px 0px 0px 150px ;
+      }
+      .columP{ 
+      	text-align: center;
+      	padding: 5px 5px 5px 5px;
+       border: 1px solid #000;
+      	font-size:13px;
       }
   	</style>
 </head>  
@@ -105,21 +127,57 @@
       <div id="subtitulo">
         CARGA INICIAL DE LA INFRAESTRUCTURA DE LA UNIDAD MÉDICA	
       </div>
-      <table class="default">
+      <div>
+        <table class="default">
   				<tr>
-    				<th >Claves</th>
-                	<th >U.R.</th>
-                	<td>13</td>
-                	<th >C.T.</th>
-                	<td>208</td>
-                	<th >AUX</th>
-                	<td>00</td>
+    				<th class="columright">Claves</th>
+                	<th class="columright">U.R.</th>
+                	<td class="columright">13</td>
+                	<th class="columright">C.T.</th>
+                	<td class="columright">208</td>
+                	<th class="columright">AUX</th>
+                	<td class="columright">00</td>
   				</tr>
  				
 			</table>
+      </div>
+      <div id="fecha">
+         <table class="default">
+  				<tr>
+    				<th class="columrightF">Fecha de Elaboración:</th>
+                	<td class="columrightF">02/02/2022</td>
+                	
+  				</tr>
+ 				
+			</table>
+      </div>
+      
     </aside>
   
   <div class="clear"></div>
+  
+  <section>
+ 	14 columnas
+      <table class="default">
+  				<tr>
+    				<th class="columP">N° de Consultorio</th>
+                	<th class="columPcolumP"></th>
+                  	<th class="columP">Nombre del Médico</th>
+                	<th class="columP">ID Médico</th>
+                  	<th class="columP">R.F.C.</th>
+                	<th class="columP">Cédula Profesional</th>
+                 	<th class="columP">Nº Empleado</th>
+                	<th class="columP">Servicio</th>
+                  	<th class="columP">Turno</th>
+                	<th class="columP">Horario Inicio</th>
+                  	<th class="columP">Horario Final</th>
+                	<th class="columP">Tiempo de consulta</th>
+                  	<th class="columP">Número de citas</th>
+                	<th class="columP">Colonias Adscritas (Observaciones)</th>
+  				</tr>
+ 				
+			</table>
+  </section>
     <footer>
         <h4>Redes sociales</h4>
         <a href="#">Facebook</a>
