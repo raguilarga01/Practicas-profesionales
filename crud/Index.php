@@ -11,31 +11,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <title>Crud</title>
 </head>
+
+
 <body>
 <header>
-      <section id="left">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/c/c4/ISSSTE_logo.png"
-          alt=""
-          id="logo1_1"
-        />
-      </section>
-      <aside id="center">
-        <h1 id="titulo">
-          Dirección Normativa de Administración y Finanzas Subdirección de
-          Coordinación de Proyectos Jefatura de Servicios de Cómputo
-        </h1>
-      </aside>
-      <aside id="right">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/c/c4/ISSSTE_logo.png"
-          alt=""
-          id="logo1_1"
-        />
-      </aside>
-      <div class="clear"></div>
+    <div class="container-fluid">
+                <div class="row justify-content-center"> 
+                    <div class="col-sm-3">
+                        <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/c/c4/ISSSTE_logo.png"
+                        alt=""
+                        id="logo1_1"
+                    />
+                    </div>
+                    <div class="col-md-3">
+                        <h1 id="titulo">
+                            Dirección Normativa de Administración y Finanzas Subdirección de
+                            Coordinación de Proyectos Jefatura de Servicios de Cómputo
+                        </h1>
+                    </div>
+                    <div class="col-md-3">
+                        <img
+                            src="https://upload.wikimedia.org/wikipedia/commons/c/c4/ISSSTE_logo.png"
+                            alt=""
+                            id="logo1_1"
+                        />
+                    </div>
+                </div>
+            </div>
     </header>
     <section id="left1">
       <div>
@@ -85,7 +91,6 @@
     </aside>
 
     <div class="clear"></div>
-
     <section id="principal"> 
       <table class="default">
           <thead>
@@ -154,6 +159,12 @@
         
         </tbody>
       </table>
+    </section>
+    <section id="botones">
+        <div>
+            <a href="añadir.php" class="btn btn-info">Añadir</a>
+        </div>
+        
     </section>
 </body>
 </html>
