@@ -42,7 +42,7 @@
                     </div>
                 </div>
             </div>
-    </header>
+</header>
     <section id="left1">
       <div>
         <table class="default">
