@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-05-2022 a las 20:52:18
+-- Tiempo de generación: 03-05-2022 a las 03:48:50
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 7.4.29
 
@@ -50,8 +50,13 @@ CREATE TABLE `medicos` (
 --
 
 INSERT INTO `medicos` (`id`, `id_medico`, `n_empleado`, `nom_medico`, `cedula`, `rfc`, `servicio`, `turno`, `h_inicio`, `h_final`, `t_consulta`, `n_citas`, `observaciones`, `id_consultorio`, `nom_consultorio`) VALUES
-(1, 9660, 364755, 'DRA. VIRIDANA AVILES BAUTISTA', 7885582, 'AIBV830201', 'MEDICINA FAMILIAR', 'MATUTINO', '08:00 a.m.', '02:00 p.m.', 15, 24, 'ANEXO 1', 13356, '01'),
-(2, 10938, 137133, 'DR. ANGEL CASASOLA ESTRADA', 1392795, 'CAEA600907', 'MEDICINA FAMILIAR', 'VESPERTINO', '02:00 p.m.', '08:00 p.m.', 15, 24, 'ANEXO 1', 13356, '01');
+(1, 9660, 364755, 'DRA. VIRIDANA AVILES BAUTISTA', 7885582, 'AIBV830201', 'MEDICINA FAMILIAR', 'MATUTINO', '08:00', '14:00', 15, 24, 'ANEXO 1', 13356, '01'),
+(2, 10938, 137133, 'DR. ANGEL CASASOLA ESTRADA', 1392795, 'CAEA600907', 'MEDICINA FAMILIAR', 'VESPERTINO', '14:00', '20:00', 15, 24, 'ANEXO 1', 13356, '01'),
+(3, 9476, 254793, 'DRA. MARIA DEL ROSARIO AGUILAR GUERRERO', 1808260, 'AUGR660505', 'MEDICINA FAMILIAR', 'MATUTINO', '08:00', '14:00', 15, 24, 'ANEXO 2', 13357, '02'),
+(4, 9407, 282113, 'DRA. ALEJANDRA ROJO VALDEZ', 3820422, 'ROVA770327', 'MEDICINA FAMILIAR', 'VESPERTINO', '14:30', '20:30', 15, 24, 'ANEXO 2', 13357, '02'),
+(5, 9730, 321881, 'DRA. MA. MARICELA JUDITH FERNÁNDEZ LÓPEZ', 2304184, 'FELM620918', 'ODONTOLOGÍA', 'MATUTINO', '08:00', '14:00', 30, 12, 'ABIERTO', 13359, '01D'),
+(6, 12563, 376052, 'DR. JOSE DOLORES ROLDAN ALONSO', 5568770, 'ROAD640320', 'ODONTOLOGÍA', 'VESPERTINO', '14:00', '20:00', 30, 12, 'ABIERTO', 13359, '01D'),
+(7, 0, 0, 'Sin medico asignado', 0, '', '', '', '', '', 0, 0, '', 13368, '02G');
 
 --
 -- Índices para tablas volcadas
@@ -71,7 +76,7 @@ ALTER TABLE `medicos`
 -- AUTO_INCREMENT de la tabla `medicos`
 --
 ALTER TABLE `medicos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
