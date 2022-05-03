@@ -110,6 +110,8 @@
           <th class="columP">Tiempo de consulta</th>
           <th class="columP">Número de citas</th>
           <th class="columP">Colonias Adscritas (Observaciones)</th>
+          <th class="columP"></th>
+          <th class="columP"></th>
         </tr>
         </thead>
         <tbody>
@@ -130,9 +132,11 @@
                     <td class="rowTP"><?php  echo $row['turno']?></td>
                     <td class="rowTP"><?php  echo $row['h_inicio']?></td>
                     <td class="rowTP"><?php  echo $row['h_final']?></td>
-                    <td class="rowTP"><?php  echo $row['t_consulta']?></td>
+                    <td class="rowTP"><?php  echo $row['t_consulta']." MIN."?></td>
                     <td class="rowTP"><?php  echo $row['n_citas']?></td>
                     <td rowspan="2" class="rowTP"><?php  echo $row['observaciones']?></td>
+                    <th><a href="actualizar.php?id=<?php echo $row['id'] ?>" class="btn btn-info">Editar</a></th>
+                    <th><a href="delete.php?id=<?php echo $row['id'] ?>" class="btn btn-danger">Eliminar</a></th> 
                 </tr>
             <?php
                 }else{
@@ -148,8 +152,10 @@
                 <td class="rowTP"><?php  echo $row['turno']?></td>
                 <td class="rowTP"><?php  echo $row['h_inicio']?></td>
                 <td class="rowTP"><?php  echo $row['h_final']?></td>
-                <td class="rowTP"><?php  echo $row['t_consulta']?></td>
+                <td class="rowTP"><?php  echo $row['t_consulta']." MIN."?></td>
                 <td class="rowTP"><?php  echo $row['n_citas']?></td> 
+                <th><a href="actualizar.php?id=<?php echo $row['id'] ?>" class="btn btn-info">Editar</a></th>
+                <th><a href="delete.php?id=<?php echo $row['id'] ?>" class="btn btn-danger">Eliminar</a></th>  
             </tr>
         
         <?php  
@@ -162,7 +168,7 @@
     </section>
     <section id="botones">
         <div>
-            <a href="añadir.php" class="btn btn-info">Añadir</a>
+            <a href="añadir.php" class="btn btn-primary">Añadir fila</a>
         </div>
         
     </section>

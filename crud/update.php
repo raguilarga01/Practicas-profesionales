@@ -17,9 +17,12 @@ $h_final= $_POST['h_final'];
 $t_consulta= $_POST['t_consulta'];
 $n_citas= $_POST['n_citas'];
 $observaciones= $_POST['observaciones'];
+$id=$_POST['id'];
 
-$sql="INSERT INTO `medicos`(`id_medico`, `n_empleado`, `nom_medico`, `cedula`, `rfc`, `servicio`, `turno`, `h_inicio`, `h_final`, `t_consulta`, `n_citas`, `observaciones`, `id_consultorio`, `nom_consultorio`) VALUES('$id_medico','$n_empleado','$nom_medico','$cedula', '$rfc','$servicio','$turno','$h_inicio','$h_final','$t_consulta','$n_citas','$observaciones','$id_consultorio','$nom_consultorio')";
-
+$sql="UPDATE `medicos` SET `id_medico`='$id_medico',`n_empleado`=$n_empleado,`nom_medico`='$nom_medico',`cedula`='$cedula',
+`rfc`='$rfc',`servicio`='$servicio',`turno`='$turno',
+`h_inicio`='$h_inicio',`h_final`='$h_final',`t_consulta`='$t_consulta',`n_citas`='$n_citas',`observaciones`='$observaciones',
+`id_consultorio`='$id_consultorio',`nom_consultorio`='$nom_consultorio' WHERE id='$id'";
 $query=mysqli_query($con,$sql);
 
     if($query){
