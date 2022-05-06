@@ -19,7 +19,7 @@ $n_citas= $_POST['n_citas'];
 $observaciones= $_POST['observaciones'];
 $id=$_POST['id'];
 
-$sql="UPDATE `medicos` SET `id_medico`='$id_medico',`n_empleado`=$n_empleado,`nom_medico`='$nom_medico',`cedula`='$cedula',
+$sql="UPDATE `medico` SET `id_medico`='$id_medico',`n_empleado`=$n_empleado,`nom_medico`='$nom_medico',`cedula`='$cedula',
 `rfc`='$rfc',`servicio`='$servicio',`turno`='$turno',
 `h_inicio`='$h_inicio',`h_final`='$h_final',`t_consulta`='$t_consulta',`n_citas`='$n_citas',`observaciones`='$observaciones',
 `id_consultorio`='$id_consultorio',`nom_consultorio`='$nom_consultorio' WHERE id='$id'";

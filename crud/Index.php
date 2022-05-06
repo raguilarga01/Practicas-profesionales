@@ -1,9 +1,33 @@
 <?php 
+    $unidadmedica=$_POST['unidadmedica'];
+    echo $unidadmedica;
     include("conexion.php");
     $con=conectar();
-    $sql1="SELECT um.id, um.ct,um.aux,um.nom_unidadmedica,d.ur,d.nom_delegacion FROM unidadmedica um, delegaciones d WHERE um.id_delegacion=d.id ORDER BY um.nom_unidadmedica ASC";
-    $sql="SELECT *  FROM medicos";
+    $sql="SELECT m.id as medico, m.id_medico as id_medico, m.nom_medico as nom_medico, m.rfc as rfc, m.cedula as cedula, m.n_empleado as n_empleado, m.servicio as servicio, 
+    m.turno as turno, m.h_inicial as h_inicial,m.h_final as h_final, m.t_consulta as t_consulta, m.n_citas as n_citas,
+    m.observaciones as observaciones, m.cargo as cargo,c.id as consultorio, c.id_consultorio as id_consultorio, c.nom_consultorio as nom_consultorio, c.id_unidadmedica as id_unidadmedica
+    FROM medico m, consultorio c 
+    WHERE m.id_consultorio=c.id AND c.id_unidadmedica = $unidadmedica
+    ORDER BY c.id ASC";
+    $sql1="SELECT um.id as unidad, um.ct as ct, um.aux as aux, um.nom_unidadmedica as nom_unidadmedica , d.ur as ur, d.nom_delegacion as nom_delegacion  
+    FROM unidadmedica um, delegaciones d 
+    WHERE um.id_delegacion=d.id ORDER BY um.nom_unidadmedica ASC";
+    $sql2="SELECT m.id_consultorio as id_consultorio FROM medico m, consultorio c WHERE m.id_consultorio=c.id and c.id_unidadmedica=$unidadmedica ORDER BY c.id ASC";
+    $sql3="SELECT um.ct as ct, um.nom_unidadmedica as nom_unidadmedica, um.aux as aux, d.ur as ur, d.nom_delegacion as nom_delegacion FROM unidadmedica um, delegaciones d 
+    WHERE um.id_delegacion=d.id and um.id=$unidadmedica";
     $query=mysqli_query($con,$sql);
+    $query1=mysqli_query($con,$sql1);
+    $query2=mysqli_query($con,$sql2);
+    $query3=mysqli_query($con,$sql3);
+    $row2=mysqli_fetch_array($query3);
+    $arrayquery2=array();
+    while ($row=mysqli_fetch_array($query2)) {
+      $arrayquery2[]=$row['id_consultorio'];
+    }
+
+    
+    $valores = array_count_values($arrayquery2);
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +76,7 @@
           </tr>
           <tr>
             <td>
-            Hidalgo
+            <?php echo $row2['nom_delegacion']?>
             </td>
           </tr>
         </table>
@@ -61,10 +85,24 @@
             <th class="columeft">Unidad Médica</th>
           </tr>
           <tr>
-            <td>CMF. MIXQUIAHUALA</td>
+            <td><?php echo $row2['nom_unidadmedica']?></td>
           </tr>
         </table>
-        
+        <form action="Index.php" method="POST">
+            <select name="unidadmedica" id="unidadmedica">
+              <?php
+              while($row=mysqli_fetch_array($query1)) {
+                echo $row['nom_unidadmedica'];
+                ?>
+                <option name="unidadmedica" value="<?php echo $row['unidad']?>"> <?php echo $row['nom_unidadmedica']?> </option>
+
+                <?php
+              }
+              ?>
+            </select>
+            <br><br>
+            <input type="submit" value="Filtrar">
+          </form>
     </section>
     <aside id="right1">
       <div id="subtitulo">
@@ -75,11 +113,11 @@
           <tr>
             <th class="columright">Claves</th>
             <th class="columright">U.R.</th>
-            <td class="columright">13</td>
+            <td class="columright"><?php echo $row2['ur']?></td>
             <th class="columright">C.T.</th>
-            <td class="columright">208</td>
+            <td class="columright"><?php echo $row2['ct']?></td>
             <th class="columright">AUX</th>
-            <td class="columright">00</td>
+            <td class="columright"><?php echo "0".$row2['aux']?></td>
           </tr>
         </table>
       </div>
@@ -120,13 +158,16 @@
         </thead>
         <tbody>
         <?php
+            $count=1;
             while($row=mysqli_fetch_array($query)){
-                $temp=$row['id'];
-                if (($temp % 2) != 0 ) {
+              foreach($valores as $key => $val){
+                if($key==$row['consultorio']){
+                  /*echo $key."<-->".$row['consultorio']."valor-->".$val;*/
+                  if ($val == 1) {
                 ?>
-                <tr>
-                    <td rowspan="2" class="rowTP"><?php  echo $row['nom_consultorio']?></td>
-                    <td rowspan="2" class="rowTP"><?php  echo $row['id_consultorio']?></td>
+                    <tr>
+                    <td class="rowTP"><?php  echo $row['nom_consultorio']?></td>
+                    <td class="rowTP"><?php  echo $row['id_consultorio']?></td>
                     <td class="rowTP"><?php  echo $row['nom_medico']?></td>
                     <td class="rowTP"><?php  echo $row['id_medico']?></td>
                     <td class="rowTP"><?php  echo $row['rfc']?></td>
@@ -134,37 +175,82 @@
                     <td class="rowTP"><?php  echo $row['n_empleado']?></td>
                     <td class="rowTP"><?php  echo $row['servicio']?></td>
                     <td class="rowTP"><?php  echo $row['turno']?></td>
-                    <td class="rowTP"><?php  echo $row['h_inicio']?></td>
+                    <td class="rowTP"><?php  echo $row['h_inicial']?></td>
                     <td class="rowTP"><?php  echo $row['h_final']?></td>
                     <td class="rowTP"><?php  echo $row['t_consulta']." MIN."?></td>
                     <td class="rowTP"><?php  echo $row['n_citas']?></td>
-                    <td rowspan="2" class="rowTP"><?php  echo $row['observaciones']?></td>
-                    <th><a href="actualizar.php?id=<?php echo $row['id'] ?>" class="btn btn-info">Editar</a></th>
-                    <th><a href="delete.php?id=<?php echo $row['id'] ?>" class="btn btn-danger">Eliminar</a></th> 
-                </tr>
-            <?php
-                }else{
+                    <td class="rowTP"><?php  echo $row['observaciones']?></td>
+                    <th><a href="actualizar.php?id=<?php echo $row['medico'] ?>" class="btn btn-info">Editar</a></th>
+                    <th><a href="delete.php?id=<?php echo $row['medico'] ?>" class="btn btn-danger">Eliminar</a></th> 
+                    </tr>
+                    <?php  
+                    break;    
+                  }else{
+                   if ($count==1) {
+                     ?>
+                        <tr>
+                          <td rowspan="2" class="rowTP"><?php  echo $row['nom_consultorio']?></td>
+                          <td rowspan="2" class="rowTP"><?php  echo $row['id_consultorio']?></td>
+                          <td class="rowTP"><?php  echo $row['nom_medico']?></td>
+                          <td class="rowTP"><?php  echo $row['id_medico']?></td>
+                          <td class="rowTP"><?php  echo $row['rfc']?></td>
+                          <td class="rowTP"><?php  echo $row['cedula']?></td>
+                          <td class="rowTP"><?php  echo $row['n_empleado']?></td>
+                          <td class="rowTP"><?php  echo $row['servicio']?></td>
+                          <td class="rowTP"><?php  echo $row['turno']?></td>
+                          <td class="rowTP"><?php  echo $row['h_inicial']?></td>
+                          <td class="rowTP"><?php  echo $row['h_final']?></td>
+                          <td class="rowTP"><?php  echo $row['t_consulta']." MIN."?></td>
+                          <td class="rowTP"><?php  echo $row['n_citas']?></td>
+                          <td class="rowTP"><?php  echo $row['observaciones']?></td>
+                          <th><a href="actualizar.php?id=<?php echo $row['medico'] ?>" class="btn btn-info">Editar</a></th>
+                          <th><a href="delete.php?id=<?php echo $row['medico'] ?>" class="btn btn-danger">Eliminar</a></th> 
+                        </tr>
+                     <?php
+                     $count=2;
+                    
+                     
+                   }else {
+                   
+                    $count=1;
+                     if ($row['cargo'] == "") {
+                     
+                     ?>
+                      <tr>
+                        <td class="rowTP"><?php  echo $row['nom_medico']?></td>
+                        <td class="rowTP"><?php  echo $row['id_medico']?></td>
+                        <td class="rowTP"><?php  echo $row['rfc']?></td>
+                        <td class="rowTP"><?php  echo $row['cedula']?></td>
+                        <td class="rowTP"><?php  echo $row['n_empleado']?></td>
+                        <td class="rowTP"><?php  echo $row['servicio']?></td>
+                        <td class="rowTP"><?php  echo $row['turno']?></td>
+                        <td class="rowTP"><?php  echo $row['h_inicial']?></td>
+                        <td class="rowTP"><?php  echo $row['h_final']?></td>
+                        <td class="rowTP"><?php  echo $row['t_consulta']." MIN."?></td>
+                        <td class="rowTP"><?php  echo $row['n_citas']?></td>
+                        <td class="rowTP"><?php  echo $row['observaciones']?></td>
+                        <th><a href="actualizar.php?id=<?php echo $row['medico'] ?>" class="btn btn-info">Editar</a></th>
+                        <th><a href="delete.php?id=<?php echo $row['medico'] ?>" class="btn btn-danger">Eliminar</a></th>  
+                      </tr>
 
+                     <?php
+                     
+                     }else {
+                       $cargo=$row['medico'];
+                       break;
+                     }/* Termina else de verificacion de cargo*/
+                   }/* Termina else de fila doble*/
+                  }/* Termina else*/
+                }else{/* Termina if de verificacion de consultorio*/
+                  
+                }
+              }/* Termina foreach*/
             ?>
-            <tr>
-                <td class="rowTP"><?php  echo $row['nom_medico']?></td>
-                <td class="rowTP"><?php  echo $row['id_medico']?></td>
-                <td class="rowTP"><?php  echo $row['rfc']?></td>
-                <td class="rowTP"><?php  echo $row['cedula']?></td>
-                <td class="rowTP"><?php  echo $row['n_empleado']?></td>
-                <td class="rowTP"><?php  echo $row['servicio']?></td>
-                <td class="rowTP"><?php  echo $row['turno']?></td>
-                <td class="rowTP"><?php  echo $row['h_inicio']?></td>
-                <td class="rowTP"><?php  echo $row['h_final']?></td>
-                <td class="rowTP"><?php  echo $row['t_consulta']." MIN."?></td>
-                <td class="rowTP"><?php  echo $row['n_citas']?></td> 
-                <th><a href="actualizar.php?id=<?php echo $row['id'] ?>" class="btn btn-info">Editar</a></th>
-                <th><a href="delete.php?id=<?php echo $row['id'] ?>" class="btn btn-danger">Eliminar</a></th>  
-            </tr>
+            
         
         <?php  
-                }      
-            }
+                    
+            }/* Termina while*/
         ?>
         
         </tbody>
