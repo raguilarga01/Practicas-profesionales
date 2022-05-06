@@ -1,6 +1,7 @@
 <?php 
     include("conexion.php");
     $con=conectar();
+    $sql1="SELECT um.id, um.ct,um.aux,um.nom_unidadmedica,d.ur,d.nom_delegacion FROM unidadmedica um, delegaciones d WHERE um.id_delegacion=d.id ORDER BY um.nom_unidadmedica ASC";
     $sql="SELECT *  FROM medicos";
     $query=mysqli_query($con,$sql);
 ?>
@@ -11,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Crud</title>
 </head>
 
@@ -50,7 +51,9 @@
             <th class="columeft">Delegacion</th>
           </tr>
           <tr>
-            <td>Hidalgo</td>
+            <td>
+            Hidalgo
+            </td>
           </tr>
         </table>
         <table class="default">
@@ -61,7 +64,7 @@
             <td>CMF. MIXQUIAHUALA</td>
           </tr>
         </table>
-      </div>
+        
     </section>
     <aside id="right1">
       <div id="subtitulo">
@@ -91,6 +94,7 @@
     </aside>
 
     <div class="clear"></div>
+  
     <section id="principal"> 
       <table class="default">
           <thead>
