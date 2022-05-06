@@ -16,6 +16,7 @@ $t_consulta= $_POST['t_consulta'];
 $n_citas= $_POST['n_citas'];
 $observaciones= $_POST['observaciones'];
 $id=$_POST['id'];
+$unidad=$_POST['unidad'];
 
 
 
@@ -24,7 +25,7 @@ $sql="UPDATE `medico` SET `id_medico`='$id_medico',`$nom_medico`='$nom_medico',`
 $query=mysqli_query($con,$sql);
 
     if($query){
-        $_GET['unidadmedica']=
+        $_GET['unidadmedica']=$unidad;
         Header("Location: Index.php");
     }
 ?>
