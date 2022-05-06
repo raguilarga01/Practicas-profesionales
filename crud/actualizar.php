@@ -3,7 +3,7 @@
     $con=conectar();
 
 $id=$_GET['id'];
-$unidad=$_GET['unidadmedica'];
+
 
 $sql="SELECT m.id as medico, m.id_medico as id_medico, m.nom_medico as nom_medico, m.rfc as rfc, m.cedula as cedula, m.n_empleado as n_empleado, m.servicio as servicio, 
 m.turno as turno, m.h_inicial as h_inicial,m.h_final as h_final, m.t_consulta as t_consulta, m.n_citas as n_citas,
@@ -70,7 +70,8 @@ $row=mysqli_fetch_array($query);
                                 <input type="text" class="form-control mb-3" name="n_citas" placeholder="Número de citas" value="<?php echo $row['n_citas'] ?>" >
                                 <input type="text" class="form-control mb-3" name="observaciones" placeholder="Colonias Adscritas (Observaciones)" value="<?php echo $row['observaciones'] ?>" readonly="readonly">
                                 <input type="hidden" name="id" value="<?php echo $row['medico'] ?>">
-                                <input type="hidden" name="id" value="<?php echo $unidad?>">
+                                <input type="hidden" name="unidad" value="<?php echo $_GET['unidadmedica']?>">
+                                <?php echo $_GET['unidadmedica'] ?>
                                 <?php echo $row['medico'] ?>
                                 <input type="submit" class="btn btn-primary" value="Actualizar">
                     </form>
