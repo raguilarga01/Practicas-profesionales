@@ -3,8 +3,6 @@
 include("conexion.php");
 $con=conectar();
 
-$nom_consultorio= $_POST['nom_consultorio'];
-$id_consultorio= $_POST['id_consultorio'];
 $id_medico= $_POST['id_medico'];
 $n_empleado= $_POST['n_empleado'];
 $nom_medico= $_POST['nom_medico'];
@@ -19,13 +17,14 @@ $n_citas= $_POST['n_citas'];
 $observaciones= $_POST['observaciones'];
 $id=$_POST['id'];
 
-$sql="UPDATE `medico` SET `id_medico`='$id_medico',`n_empleado`=$n_empleado,`nom_medico`='$nom_medico',`cedula`='$cedula',
-`rfc`='$rfc',`servicio`='$servicio',`turno`='$turno',
-`h_inicio`='$h_inicio',`h_final`='$h_final',`t_consulta`='$t_consulta',`n_citas`='$n_citas',`observaciones`='$observaciones',
-`id_consultorio`='$id_consultorio',`nom_consultorio`='$nom_consultorio' WHERE id='$id'";
+
+
+$sql="UPDATE `medico` SET `id_medico`='$id_medico',`$nom_medico`='$nom_medico',`rfc`='$rfc',`cedula`='$cedula',`n_empleado`='$n_empleado',`servicio`='$servicio',
+`turno`='$turno',`h_inicial`='$h_inicio',`h_final`='$h_final',`t_consulta`='$t_consulta',`n_citas`='$n_citas',`observaciones`='$observaciones' WHERE id='$id'";
 $query=mysqli_query($con,$sql);
 
     if($query){
+        $_GET['unidadmedica']=
         Header("Location: Index.php");
     }
 ?>

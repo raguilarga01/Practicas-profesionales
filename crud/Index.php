@@ -1,5 +1,5 @@
 <?php 
-    $unidadmedica=$_POST['unidadmedica'];
+    $unidadmedica=$_GET['unidadmedica'];
     echo $unidadmedica;
     include("conexion.php");
     $con=conectar();
@@ -88,14 +88,14 @@
             <td><?php echo $row2['nom_unidadmedica']?></td>
           </tr>
         </table>
-        <form action="Index.php" method="POST">
+        <form action="Index.php" method="GET">
             <select name="unidadmedica" id="unidadmedica">
               <?php
               while($row=mysqli_fetch_array($query1)) {
                 echo $row['nom_unidadmedica'];
                 ?>
                 <option name="unidadmedica" value="<?php echo $row['unidad']?>"> <?php echo $row['nom_unidadmedica']?> </option>
-
+                
                 <?php
               }
               ?>
@@ -180,8 +180,8 @@
                     <td class="rowTP"><?php  echo $row['t_consulta']." MIN."?></td>
                     <td class="rowTP"><?php  echo $row['n_citas']?></td>
                     <td class="rowTP"><?php  echo $row['observaciones']?></td>
-                    <th><a href="actualizar.php?id=<?php echo $row['medico'] ?>" class="btn btn-info">Editar</a></th>
-                    <th><a href="delete.php?id=<?php echo $row['medico'] ?>" class="btn btn-danger">Eliminar</a></th> 
+                    <th><a href="actualizar.php?id=<?php echo $row['medico'] ?> & unidadmedica=<?php echo $row['id_unidadmedica']?>" class="btn btn-info">Editar</a></th>
+                    <th><a href="delete.php?id=<?php echo $row['medico'] ?> & unidadmedica=<?php echo $row['id_unidadmedica']?>" class="btn btn-danger">Eliminar</a></th> 
                     </tr>
                     <?php  
                     break;    
@@ -203,8 +203,8 @@
                           <td class="rowTP"><?php  echo $row['t_consulta']." MIN."?></td>
                           <td class="rowTP"><?php  echo $row['n_citas']?></td>
                           <td class="rowTP"><?php  echo $row['observaciones']?></td>
-                          <th><a href="actualizar.php?id=<?php echo $row['medico'] ?>" class="btn btn-info">Editar</a></th>
-                          <th><a href="delete.php?id=<?php echo $row['medico'] ?>" class="btn btn-danger">Eliminar</a></th> 
+                          <th><a href="actualizar.php?id=<?php echo $row['medico']?> & unidadmedica=<?php echo $row['id_unidadmedica']?>" class="btn btn-info">Editar</a></th>
+                          <th><a href="delete.php?id=<?php echo $row['medico'] ?> & unidadmedica=<?php echo $row['id_unidadmedica']?>" class="btn btn-danger">Eliminar</a></th> 
                         </tr>
                      <?php
                      $count=2;
@@ -229,8 +229,8 @@
                         <td class="rowTP"><?php  echo $row['t_consulta']." MIN."?></td>
                         <td class="rowTP"><?php  echo $row['n_citas']?></td>
                         <td class="rowTP"><?php  echo $row['observaciones']?></td>
-                        <th><a href="actualizar.php?id=<?php echo $row['medico'] ?>" class="btn btn-info">Editar</a></th>
-                        <th><a href="delete.php?id=<?php echo $row['medico'] ?>" class="btn btn-danger">Eliminar</a></th>  
+                        <th><a href="actualizar.php?id=<?php echo $row['medico']?> & unidadmedica=<?php echo $row['id_unidadmedica']?>" class="btn btn-info">Editar</a></th>
+                        <th><a href="delete.php?id=<?php echo $row['medico'] ?> & unidadmedica=<?php echo $row['id_unidadmedica']?>" class="btn btn-danger">Eliminar</a></th>  
                       </tr>
 
                      <?php

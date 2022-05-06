@@ -3,6 +3,7 @@
     $con=conectar();
 
 $id=$_GET['id'];
+$unida=$_GET['id'];
 
 $sql="SELECT m.id as medico, m.id_medico as id_medico, m.nom_medico as nom_medico, m.rfc as rfc, m.cedula as cedula, m.n_empleado as n_empleado, m.servicio as servicio, 
 m.turno as turno, m.h_inicial as h_inicial,m.h_final as h_final, m.t_consulta as t_consulta, m.n_citas as n_citas,
