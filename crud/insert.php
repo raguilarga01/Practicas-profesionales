@@ -17,12 +17,17 @@ $h_final= $_POST['h_final'];
 $t_consulta= $_POST['t_consulta'];
 $n_citas= $_POST['n_citas'];
 $observaciones= $_POST['observaciones'];
+$unidad=$_POST['unidad'];
 
-$sql="INSERT INTO `medicos`(`id_medico`, `n_empleado`, `nom_medico`, `cedula`, `rfc`, `servicio`, `turno`, `h_inicio`, `h_final`, `t_consulta`, `n_citas`, `observaciones`, `id_consultorio`, `nom_consultorio`) VALUES('$id_medico','$n_empleado','$nom_medico','$cedula', '$rfc','$servicio','$turno','$h_inicio','$h_final','$t_consulta','$n_citas','$observaciones','$id_consultorio','$nom_consultorio')";
 
-$query=mysqli_query($con,$sql);
+$sql0="INSERT INTO `consultorio`(`id_consultorio`, `nom_consultorio`, `id_unidadmedica`) VALUES ('$id_consultorio','$nom_consultorio','$unidad')";
+$query=mysqli_query($con,$sql0);
+$lastid = mysqli_insert_id($con); 
+$sql="INSERT INTO `medico`(`id_medico`, `nom_medico`, `rfc`, `cedula`, `n_empleado`, `servicio`, `turno`, `h_inicial`, `h_final`, `t_consulta`, `n_citas`, `observaciones`, `id_consultorio`)
+VALUES('$id_medico','$nom_medico','$rfc','$cedula','$n_empleado','$servicio','$turno','$h_inicio','$h_final','$t_consulta','$n_citas','$observaciones', '$lastid')";
+$query1=mysqli_query($con,$sql);
 
-    if($query){
-        Header("Location: Index.php");
+    if($query && $query1){
+        Header("Location: Index.php?unidadmedica=".$unidad);
     }
 ?>

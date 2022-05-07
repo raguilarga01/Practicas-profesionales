@@ -55,7 +55,7 @@
                                 <input type="text" class="form-control mb-3" name="t_consulta" placeholder="Tiempo de consulta" >
                                 <input type="text" class="form-control mb-3" name="n_citas" placeholder="Número de citas" >
                                 <input type="text" class="form-control mb-3" name="observaciones" placeholder="Colonias Adscritas (Observaciones)" >
-                                
+                                <input type="hidden" name="unidad" value="<?php echo $_GET['unidadmedica']?>">
                                 <input type="submit" class="btn btn-primary">
                     </form>
                     
