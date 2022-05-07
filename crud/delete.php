@@ -4,13 +4,12 @@
 
 $id=$_GET['id'];
 
-$sql="UPDATE `medicos` SET `id_medico`='',`n_empleado`='',`nom_medico`='Sin medico asigando',`cedula`='',
-`rfc`='',`servicio`='',`turno`='',`h_inicio`='',`h_final`='',`t_consulta`='',`n_citas`='' WHERE id='$id'";
+$sql="UPDATE `medico` SET `nom_medico`='SIN MÉDICO',`rfc`='',`cedula`='',`n_empleado`='',`observaciones`='INHABILITADO',`n_citas`='0' WHERE id='$id'";
 
 $query=mysqli_query($con,$sql);
 
     if($query){
-        Header("Location: Index.php");
+        Header("Location: Index.php?unidadmedica=".$_GET['unidadmedica']);
     }
 ?>
 ?>

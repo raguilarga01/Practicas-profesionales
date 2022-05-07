@@ -23,6 +23,7 @@ $unidad=$_POST['unidad'];
 
 $sql="UPDATE `medico` SET `id_medico`='$id_medico',`nom_medico`='$nom_medico',`rfc`='$rfc',`cedula`='$cedula',`n_empleado`='$n_empleado',`servicio`='$servicio',
 `turno`='$turno',`h_inicial`='$h_inicio',`h_final`='$h_final',`t_consulta`='$t_consulta',`n_citas`='$n_citas',`observaciones`='$observaciones' WHERE id='$id'";
+
 $query=mysqli_query($con,$sql);
 
     if($query){
