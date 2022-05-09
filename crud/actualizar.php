@@ -68,11 +68,9 @@ $row=mysqli_fetch_array($query);
                                 <input type="text" class="form-control mb-3" name="h_final" placeholder="Horario Final" value="<?php echo $row['h_final'] ?>" >
                                 <input type="text" class="form-control mb-3" name="t_consulta" placeholder="Tiempo de consulta" value="<?php echo $row['t_consulta'] ?>" >
                                 <input type="text" class="form-control mb-3" name="n_citas" placeholder="Número de citas" value="<?php echo $row['n_citas'] ?>" >
-                                <input type="text" class="form-control mb-3" name="observaciones" placeholder="Colonias Adscritas (Observaciones)" value="<?php echo $row['observaciones'] ?>" readonly="readonly">
+                                <input type="text" class="form-control mb-3" name="observaciones" placeholder="Colonias Adscritas (Observaciones)" value="<?php echo $row['observaciones'] ?>">
                                 <input type="hidden" name="id" value="<?php echo $row['medico'] ?>">
                                 <input type="hidden" name="unidad" value="<?php echo $_GET['unidadmedica']?>">
-                                <?php echo $_GET['unidadmedica'] ?>
-                                <?php echo $row['medico'] ?>
                                 <input type="submit" class="btn btn-primary" value="Actualizar">
                     </form>
                     

@@ -102,11 +102,7 @@
       }
 
       /*Tabla principal*/
-      #principal{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+      
       .columP {
         text-align: center;
         padding: 5px 5px 5px 5px;
@@ -123,4 +119,7 @@
       #botones{
         right: 0;
         text-align: center;
+        margin-bottom: 30px;
       }
+      
+     

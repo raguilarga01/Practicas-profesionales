@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-05-2022 a las 20:49:28
+-- Tiempo de generación: 09-05-2022 a las 18:32:41
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 7.4.29
 
@@ -200,7 +200,7 @@ INSERT INTO `medico` (`id`, `id_medico`, `nom_medico`, `rfc`, `cedula`, `n_emple
 (68, 13594, 'SIN MÉDICO (BAJA 28/05/2021)', '', 0, 0, 'GERIATRIA', 'VESPERTINO', '14:00', '00:00', 20, 0, 'CONSULTORIO ESPECIAL', '', 59),
 (69, 13595, 'LIC. CLAUDIA AURORA ROSALES GARCIA', 'ROGC760526', 5343819, 316770, 'NUTRICION', 'MATUTINO', '08:00', '14:00', 20, 18, 'CONSULTORIO ESPECIAL', '', 60),
 (70, 0, 'DRA. MARIA LUISA VILLASEÑOR CASTILLO		', '', 0, 0, '', '', '', '', 0, 0, '', 'DIRECTORA', 60),
-(71, 9660, 'DRA. VIRIDANA AVILES BAUTISTA', 'AIBV830201', 7885582, 364755, 'MEDICINA FAMILIAR', 'MATUTINO', '08:00', '14:00', 15, 24, 'ANEXO 1', '', 1),
+(71, 9660, 'DRA. VIRIDANA AVILES BAUTISTA', 'AIBV830201', 7885582, 364755, 'MEDICINA FAMILIAR', 'MATUTINO', '08:00', '14:00', 15, 24, 'observaciones', '', 1),
 (72, 10938, 'DR. ANGEL CASASOLA ESTRADA', 'CAEA600907', 1392795, 137133, 'MEDICINA FAMILIAR', 'VESPERTINO', '14:00', '20:00', 15, 24, 'ANEXO 1', '', 1),
 (73, 9476, 'DRA. MARIA DEL ROSARIO AGUILAR GUERRERO', 'AUGR660505', 1808260, 254793, 'MEDICINA FAMILIAR', 'MATUTINO', '08:00', '14:00', 15, 24, 'ANEXO 2', '', 2),
 (74, 9407, 'DRA. ALEJANDRA ROJO VALDEZ', 'ROVA770327', 3820422, 282113, 'MEDICINA FAMILIAR', 'VESPERTINO', '14:30', '20:30', 15, 24, 'ANEXO 2', '', 2),
@@ -287,21 +287,23 @@ CREATE TABLE `unidadmedica` (
   `ct` int(11) NOT NULL,
   `aux` int(11) NOT NULL,
   `nom_unidadmedica` varchar(50) NOT NULL,
-  `id_delegacion` int(11) NOT NULL
+  `fecha_creacion` varchar(20) NOT NULL,
+  `id_delegacion` int(11) NOT NULL,
+  `id_medico` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `unidadmedica`
 --
 
-INSERT INTO `unidadmedica` (`id`, `ct`, `aux`, `nom_unidadmedica`, `id_delegacion`) VALUES
-(1, 208, 0, 'CMF.  MIXQUIAHUALA', 2),
-(2, 211, 0, 'C.M.F.E.Q. XALOSTOC', 3),
-(3, 204, 1, 'UMF ACTOPAN', 2),
-(4, 210, 1, 'UMF AMECAMECA', 3),
-(5, 204, 6, 'UMF MINERAL DEL MONTE', 2),
-(6, 208, 1, 'UMF. TEPATEPEC', 2),
-(7, 210, 0, 'CMF. DIVISION DEL NORTE', 1);
+INSERT INTO `unidadmedica` (`id`, `ct`, `aux`, `nom_unidadmedica`, `fecha_creacion`, `id_delegacion`, `id_medico`) VALUES
+(1, 208, 0, 'CMF.  MIXQUIAHUALA', '02/02/2022', 2, 93),
+(2, 211, 0, 'C.M.F.E.Q. XALOSTOC', '21/07/2021', 3, 123),
+(3, 204, 1, 'UMF ACTOPAN', '04/03/2022', 2, 134),
+(4, 210, 1, 'UMF AMECAMECA', '09/03/2022', 3, 139),
+(5, 204, 6, 'UMF MINERAL DEL MONTE', '01/03/2022', 2, 142),
+(6, 208, 1, 'UMF. TEPATEPEC', '10/03/2022', 2, 145),
+(7, 210, 0, 'CMF. DIVISION DEL NORTE', '12/04/2022', 1, 70);
 
 --
 -- Índices para tablas volcadas
@@ -332,7 +334,8 @@ ALTER TABLE `medico`
 --
 ALTER TABLE `unidadmedica`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `delegacion01` (`id_delegacion`);
+  ADD KEY `delegacion01` (`id_delegacion`),
+  ADD KEY `encargadoUnidad` (`id_medico`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -382,7 +385,8 @@ ALTER TABLE `medico`
 -- Filtros para la tabla `unidadmedica`
 --
 ALTER TABLE `unidadmedica`
-  ADD CONSTRAINT `delegacion01` FOREIGN KEY (`id_delegacion`) REFERENCES `delegaciones` (`id`);
+  ADD CONSTRAINT `delegacion01` FOREIGN KEY (`id_delegacion`) REFERENCES `delegaciones` (`id`),
+  ADD CONSTRAINT `encargadoUnidad` FOREIGN KEY (`id_medico`) REFERENCES `medico` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

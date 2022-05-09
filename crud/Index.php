@@ -1,6 +1,5 @@
 <?php 
     $unidadmedica=$_GET['unidadmedica'];
-    echo $unidadmedica;
     include("conexion.php");
     $con=conectar();
     $sql="SELECT m.id as medico, m.id_medico as id_medico, m.nom_medico as nom_medico, m.rfc as rfc, m.cedula as cedula, m.n_empleado as n_empleado, m.servicio as servicio, 
@@ -13,13 +12,16 @@
     FROM unidadmedica um, delegaciones d 
     WHERE um.id_delegacion=d.id ORDER BY um.nom_unidadmedica ASC";
     $sql2="SELECT m.id_consultorio as id_consultorio FROM medico m, consultorio c WHERE m.id_consultorio=c.id and c.id_unidadmedica=$unidadmedica ORDER BY c.id ASC";
-    $sql3="SELECT um.ct as ct, um.nom_unidadmedica as nom_unidadmedica, um.aux as aux, d.ur as ur, d.nom_delegacion as nom_delegacion FROM unidadmedica um, delegaciones d 
+    $sql3="SELECT um.ct as ct, um.nom_unidadmedica as nom_unidadmedica, um.aux as aux, d.ur as ur, d.nom_delegacion as nom_delegacion,um.fecha_creacion as fecha_creacion FROM unidadmedica um, delegaciones d 
     WHERE um.id_delegacion=d.id and um.id=$unidadmedica";
+    $sql4="SELECT me.nom_medico as nom_medico, me.cargo as cargo FROM unidadmedica um, medico me WHERE me.id=um.id_medico and um.id=$unidadmedica";
     $query=mysqli_query($con,$sql);
     $query1=mysqli_query($con,$sql1);
     $query2=mysqli_query($con,$sql2);
     $query3=mysqli_query($con,$sql3);
+    $query4=mysqli_query($con,$sql4);
     $row2=mysqli_fetch_array($query3);
+    $row3=mysqli_fetch_array($query4);
     $arrayquery2=array();
     while ($row=mysqli_fetch_array($query2)) {
       $arrayquery2[]=$row['id_consultorio'];
@@ -47,7 +49,7 @@
                 <div class="row justify-content-center"> 
                     <div class="col-sm-3">
                         <img
-                        src="https://upload.wikimedia.org/wikipedia/commons/c/c4/ISSSTE_logo.png"
+                        src="img/ISSSTE.png"
                         alt=""
                         id="logo1_1"
                     />
@@ -60,7 +62,7 @@
                     </div>
                     <div class="col-md-3">
                         <img
-                            src="https://upload.wikimedia.org/wikipedia/commons/c/c4/ISSSTE_logo.png"
+                            src="img/SCMTI.png"
                             alt=""
                             id="logo1_1"
                         />
@@ -125,7 +127,7 @@
         <table class="default">
           <tr>
             <th class="columrightF">Fecha de Elaboración:</th>
-            <td class="columrightF">02/02/2022</td>
+            <td class="columrightF"><?php echo $row2['fecha_creacion']?></td>
           </tr>
         </table>
       </div>
@@ -134,7 +136,7 @@
     <div class="clear"></div>
   
     <section id="principal"> 
-      <table class="default">
+      <table >
           <thead>
 
         <tr>
@@ -236,7 +238,7 @@
                      <?php
                      
                      }else {
-                       $cargo=$row['medico'];
+                       
                        break;
                      }/* Termina else de verificacion de cargo*/
                    }/* Termina else de fila doble*/
@@ -254,13 +256,23 @@
         ?>
         
         </tbody>
+        
       </table>
     </section>
     <section id="botones">
         <div>
             <a href="añadir.php" class="btn btn-primary">Añadir fila</a>
         </div>
-        
+    </section>
+    <section >
+    <table >
+            <tr>
+              <th class="columP">Nombre del Médico</th>
+              <td class="rowTP"><?php  echo $row3['nom_medico']?></td>
+              <th class="columP">Cargo</th>
+              <td class="rowTP"><?php  echo $row3['cargo']?></td>
+            </tr>
+    </table>
     </section>
 </body>
 </html>
